@@ -180,12 +180,17 @@ class OptionsPages
 
     static function is_options_page($source)
     {
+
+        if( $source instanceof \WPGraphQL\Acf\Model\AcfOptionsPage ) {
+            return true;
+        }
+
         if (!is_array($source)) {
             return false;
         }
 
-        $type = $source['type'] ?? null;
-        return $type === 'options_page';
+        $type = $source['node']->acfId ?? null;
+        return $type === 'options';
     }
 
     static function is_options_page_root_query(ResolveInfo $info)
