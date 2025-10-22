@@ -20,7 +20,7 @@ class PolylangTypes
 
         foreach (pll_languages_list() as $lang) {
             // Fix: Always use the same format for values
-            $language_codes[strtoupper($lang)] = [
+            $language_codes[str_replace('-', '_', strtoupper($lang))] = [
                 'value' => $lang,
             ];
         }
